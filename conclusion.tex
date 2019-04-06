@@ -1,0 +1,32 @@
+{\setstretch{1.7}
+\chapter{Conclusion}
+}
+{\setstretch{1.65}
+\section{Project Aims}
+As stated in Chapter \ref{ch:introduction}, the aim of this project was to "develop a system to support users in the creation of Bioschemas markup for their web resources". This aim was successfully completed as the final system allows the user to select, provide data and generate a markup based on a Bioschemas profile with the aid of additional information like examples and controlled vocabularies.
+
+\section{Project Objectives}
+At the start of the project, I set three objectives for this project. I will restate these objectives and explain to what extent they have been achieved.
+
+The first objective was to "review existing tools for generating and validating Schema.org markup". This objective was successfully completed as the resulting information can be seen in Section \ref{sec:supportTools}. The information gathered was extremely useful in helping design the final system and finding a comparison system to use in the usability test.
+
+The second objective was to "allow users to easily generate Bioschemas markup through an intuitive and aesthetically pleasing user interface". This objective was met by the implementation of the proposed system and was verified through an evaluation. The evaluation concluded that the proposed system was successfully implemented as all but three of the initial requirements were incomplete. Additionally, it was verified through a usability test (See Section \ref{sec:finalUsabilityResults}) where members of the Bioschemas community and Computer Science students from Heriot-Watt University evaluated the final system. The evaluation showed that interface was aesthetically pleasing and easy to use, but there are a few minor areas in which the system could be improved upon and have been included as future works, discussed in Section \ref{sec:futurework}.
+
+The third and final objective was "to evaluate the final system's usefulness and validate that the generated data is syntactically correct and compliant with the Bioschemas.org specification". As the prototype system is currently deployed and in use, I believe that the final system will be just as if not more useful as it allows many more Bioschemas profiles to be marked up and contains additional information to help the user. Although, the markup produced is syntactically correct as tested with Google's Structured Data Test Tool, I was unable to validate the markup against the Bioschemas profile. JSON-Schema produced by the system could have been used to validate the markup but due to an unknown issue with JSON-Editor the functionality did not work correctly. A drawback to using JSON-Schema would not allow for the markups controlled vocabularies to be validated. However, Validata mentioned in Section \ref{sec:supportTools}, could have provided the functionality needed but at this moment the functionality is only planned and has not yet been implemented.
+
+
+\section{Future Work}\label{sec:futurework}
+After developing the system and conducting evaluations during different stages of the development, there are a few ways in which the final system could be further developed and improved upon. A couple of these future works are system requirements, but due to technical issues and time constraints, I was unable to implement them. Future development of the system would involve:
+\begin{itemize}
+    \item\textbf{Profile Validation:} Implement the ability to validate the generated markup against the selected Bioschemas Profile.
+    \item \textbf{Advanced User:} Allow more knowledgeable users to have more control over the form, by allowing modifications of the form to better suit their needs.
+    \item \textbf{More Bioschemas Profiles:} To best support the community in creating markups for Bioschemas profiles, the system should support all the profiles available including draft profiles\footnote{\url{http://bioschemas.org/specifications/drafts} (accessed 13/03/2019)}.
+    \item \textbf{Auto Generate Files:} Automatically detect new and updated Bioschemas profiles and generate the required files to keep the system always up to date. 
+    \item \textbf{User Interface Improvements:} Feedback from the final usability evaluation highlighted a few ways to enhance the usability of the interface. Future improvements would involve: 
+    \begin{itemize}
+        \item Information provided needs to be better labelled in order to improve visibility.
+        \item Buttons to add and remove items on the form need to be better spaced out.
+        \item A better nested design of the form to decrease confusion.
+    \end{itemize}
+    \end{itemize}
+}

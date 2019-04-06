@@ -1,0 +1,751 @@
+{
+  "@context": {
+    "dct": "http://purl.org/dc/terms/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfa": "http://www.w3.org/ns/rdfa#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "schema:ProteinStructure",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:sampleUsed",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:url",
+      "@type": "rdf:Property",
+      "rdfs:comment": "URL of the item.",
+      "rdfs:label": "url",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:URL"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/url"
+      }
+    },
+    {
+      "@id": "schema:hasHomolog",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:RNA",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:expressedIn",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:SequenceRange",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:reagent",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:isEncodedByBioChemEntity",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org/Gene"
+      },
+      "rdfs:comment": "Another BioChemEntity encoding by this one. Inverse property: <a href=\"http://schema.org/encodesBioChemEntity\">encodesBioChemEntity</a>.",
+      "rdfs:label": "isEncodedByBioChemEntity",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:inverseOf": {
+        "@id": "schema:encodesBioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:DNA"
+        },
+        {
+          "@id": "schema:RNA"
+        },
+        {
+          "@id": "schema:Gene"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/isEncodedByBioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:hasCoenzyme",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:disambiguatingDescription",
+      "@type": "rdf:Property",
+      "rdfs:comment": "A sub property of description. A short description of the item used to disambiguate from other, similar items. Information from other properties (in particular, name) may be necessary for the description to be useful for disambiguation.",
+      "rdfs:label": "disambiguatingDescription",
+      "rdfs:subPropertyOf": {
+        "@id": "schema:description"
+      },
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/disambiguatingDescription"
+      }
+    },
+    {
+      "@id": "schema:SequenceAnnotation",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:Gene",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:associatedDisease",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org/BioChemEntity"
+      },
+      "rdfs:comment": "Disease associated to this BioChemEntity. Such disease can be a MedicalCondition or a URL. If you want to add an evidence supporting the association, please use PropertyValue.",
+      "rdfs:label": "associatedDisease",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:MedicalCondition"
+        },
+        {
+          "@id": "schema:URL"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/associatedDisease"
+      }
+    },
+    {
+      "@id": "schema:hasOrtholog",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:Protein",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:hasBioChemEntityPart",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "Indicates a BioChemEntity that (in some sense) has this BioChemEntity as a part. Inverse property: <a href=\"http://schema.org/isPartOfBioChemEntity\">isPartOfBioChemEntity</a>.",
+      "rdfs:label": "hasBioChemEntityPart",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:inverseOf": {
+        "@id": "schema:isPartOfBioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/hasBioChemEntityPart"
+      }
+    },
+    {
+      "@id": "schema:boundMolecule",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:potentialAction",
+      "@type": "rdf:Property",
+      "rdfs:comment": "Indicates a potential Action, which describes an idealized action in which this thing would play an 'object' role.",
+      "rdfs:label": "potentialAction",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Action"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/potentialAction"
+      }
+    },
+    {
+      "@id": "schema:hasSequenceAnnotation",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org/BioChemEntity"
+      },
+      "rdfs:comment": "Pointer to a sequence annotation; please use PropertyValue if you want to include any evidence.",
+      "rdfs:label": "hasSequenceAnnotation",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:SequneceAnnotation"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/hasSequenceAnnotation"
+      }
+    },
+    {
+      "@id": "schema:biologicalType",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:isInvolvedInBiologicalProcess",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org/BioChemEntity"
+      },
+      "rdfs:comment": "Biological process this BioChemEntity is involved in; please use PropertyValue if you want to include any evidence.",
+      "rdfs:label": "isInvolvedInBiologicalProcess",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:CategoryCode"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/isInvolvedInBiologicalProcess"
+      }
+    },
+    {
+      "@id": "schema:name",
+      "@type": "rdf:Property",
+      "owl:equivalentProperty": {
+        "@id": "dct:title"
+      },
+      "rdfs:comment": "The name of the item.",
+      "rdfs:label": "name",
+      "rdfs:subPropertyOf": {
+        "@id": "rdfs:label"
+      },
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/name"
+      }
+    },
+    {
+      "@id": "schema:ChemicalSubstance",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:taxonomicRange",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "The taxonomic grouping of the organism that expresses, encodes, or in someway related to the BioChemEntity.",
+      "rdfs:label": "taxonomicRange",
+      "schema:domainIncludes": [
+        {
+          "@id": "schema:Phenotype"
+        },
+        {
+          "@id": "schema:BioChemEntity"
+        }
+      ],
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:URL"
+        },
+        {
+          "@id": "schema:CategoryCode"
+        },
+        {
+          "@id": "schema:Taxon"
+        },
+        {
+          "@id": "schema:Text"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/taxonomicRange"
+      }
+    },
+    {
+      "@id": "schema:identifier",
+      "@type": "rdf:Property",
+      "owl:equivalentProperty": {
+        "@id": "dct:identifier"
+      },
+      "rdfs:comment": "The identifier property represents any kind of identifier for any kind of <a class=\"localLink\" href=\"http://schema.org/Thing\">Thing</a>, such as ISBNs, GTIN codes, UUIDs etc. Schema.org provides dedicated properties for representing many of these, either as textual strings or as URL (URI) links. See <a href=\"/docs/datamodel.html#identifierBg\">background notes</a> for more details.",
+      "rdfs:label": "identifier",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "schema:URL"
+        },
+        {
+          "@id": "schema:Text"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/identifier"
+      }
+    },
+    {
+      "@id": "schema:DNA",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:isPartOfBioChemEntity",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "Indicates a BioChemEntity that is (in some sense) a part of this BioChemEntity. Inverse property: <a href=\"http://schema.org/hasBioChemEntityPart\">hasBioChemEntityPart</a>.",
+      "rdfs:label": "isPartOfBioChemEntity",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:inverseOf": {
+        "@id": "schema:hasBioChemEntityPart"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/isPartOfBioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:bioChemSimilarity",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "A similar molecular entity, e.g., obtained by fingerprint similarity algorithms.",
+      "rdfs:label": "bioChemSimilarity",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/bioChemSimilarity"
+      }
+    },
+    {
+      "@id": "schema:description",
+      "@type": "rdf:Property",
+      "owl:equivalentProperty": {
+        "@id": "dct:description"
+      },
+      "rdfs:comment": "A description of the item.",
+      "rdfs:label": "description",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/description"
+      }
+    },
+    {
+      "@id": "schema:hasMolecularFunction",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org/BioChemEntity"
+      },
+      "rdfs:comment": "Molecular function performed by this BioChemEntity; please use PropertyValue if you want to include any evidence.",
+      "rdfs:label": "hasMolecularFunction",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:CategoryCode"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/hasMolecularFunction"
+      }
+    },
+    {
+      "@id": "schema:isMatchedBy",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "A model matching this BioChemEntity.",
+      "rdfs:label": "isMatchedBy",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:SequenceMatchingModel"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/isMatchedBy"
+      }
+    },
+    {
+      "@id": "schema:additionalType",
+      "@type": "rdf:Property",
+      "rdfs:comment": "An additional type for the item, typically used for adding more specific types from external vocabularies in microdata syntax. This is a relationship between something and a class that the thing is in. In RDFa syntax, it is better to use the native RDFa syntax - the 'typeof' attribute - for multiple types. Schema.org tools may have only weaker understanding of extra types, in particular those defined externally.",
+      "rdfs:label": "additionalType",
+      "rdfs:subPropertyOf": {
+        "@id": "rdf:type"
+      },
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:URL"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/additionalType"
+      }
+    },
+    {
+      "@id": "schema:image",
+      "@type": "rdf:Property",
+      "rdfs:comment": "An image of the item. This can be a <a class=\"localLink\" href=\"http://schema.org/URL\">URL</a> or a fully described <a class=\"localLink\" href=\"http://schema.org/ImageObject\">ImageObject</a>.",
+      "rdfs:label": "image",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:ImageObject"
+        },
+        {
+          "@id": "schema:URL"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/image"
+      }
+    },
+    {
+      "@id": "schema:MolecularEntity",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:Thing",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "The most generic type of item.",
+      "rdfs:label": "Thing",
+      "schema:sameAs": {
+        "@id": "https://schema.org/Thing"
+      }
+    },
+    {
+      "@id": "schema:isLocatedInSubcellularLocation",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org/BioChemEntity"
+      },
+      "rdfs:comment": "Subcellular location where this BioChemEntity is located; please use PropertyValue if you want to include any evidence.",
+      "rdfs:label": "isLocatedInSubcellularLocation",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:CategoryCode"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/isLocatedInSubcellularLocation"
+      }
+    },
+    {
+      "@id": "schema:Enzyme",
+      "rdfs:subClassOf": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:subjectOf",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "https://github.com/schemaorg/schemaorg/issues/1670"
+      },
+      "rdfs:comment": "A CreativeWork or Event about this Thing..",
+      "rdfs:label": "subjectOf",
+      "schema:category": "issue-1670",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:inverseOf": {
+        "@id": "schema:about"
+      },
+      "schema:isPartOf": {
+        "@id": "http://pending.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:CreativeWork"
+        },
+        {
+          "@id": "schema:Event"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/subjectOf"
+      }
+    },
+    {
+      "@id": "schema:biologicalRole",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "A role played by the molecular entity within a biological context.",
+      "rdfs:label": "biologicalRole",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:DefinedTerm"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/biologicalRole"
+      }
+    },
+    {
+      "@id": "schema:hasRepresentation",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "A common representation such as a protein sequence or chemical structure for this entity. For images use schema.org/image.",
+      "rdfs:label": "hasRepresentation",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:Text"
+        },
+        {
+          "@id": "schema:PropertyValue"
+        },
+        {
+          "@id": "schema:URL"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/hasRepresentation"
+      }
+    },
+    {
+      "@id": "schema:encodesBioChemEntity",
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:mainEntityOfPage",
+      "@type": "rdf:Property",
+      "rdfs:comment": "Indicates a page (or other CreativeWork) for which this thing is the main entity being described. See <a href=\"/docs/datamodel.html#mainEntityBackground\">background notes</a> for details.",
+      "rdfs:label": "mainEntityOfPage",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:inverseOf": {
+        "@id": "schema:mainEntity"
+      },
+      "schema:rangeIncludes": [
+        {
+          "@id": "schema:CreativeWork"
+        },
+        {
+          "@id": "schema:URL"
+        }
+      ],
+      "schema:sameAs": {
+        "@id": "https://schema.org/mainEntityOfPage"
+      }
+    },
+    {
+      "@id": "schema:BioChemEntity",
+      "@type": "rdfs:Class",
+      "dct:source": {
+        "@id": "http://bioschemas.org"
+      },
+      "rdfs:comment": "Any biological, chemical, or biochemical thing. For example: a protein; a gene; a chemical; a synthetic chemical.",
+      "rdfs:label": "BioChemEntity",
+      "rdfs:subClassOf": {
+        "@id": "schema:Thing"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/BioChemEntity"
+      }
+    },
+    {
+      "@id": "schema:alternateName",
+      "@type": "rdf:Property",
+      "rdfs:comment": "An alias for the item.",
+      "rdfs:label": "alternateName",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:Text"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/alternateName"
+      }
+    },
+    {
+      "@id": "schema:sameAs",
+      "@type": "rdf:Property",
+      "rdfs:comment": "URL of a reference Web page that unambiguously indicates the item's identity. E.g. the URL of the item's Wikipedia page, Wikidata entry, or official website.",
+      "rdfs:label": "sameAs",
+      "schema:domainIncludes": {
+        "@id": "schema:Thing"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:URL"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/sameAs"
+      }
+    },
+    {
+      "@id": "schema:bioChemInteraction",
+      "@type": "rdf:Property",
+      "dct:source": {
+        "@id": "http://www.bioschemas.org"
+      },
+      "rdfs:comment": "A BioChemEntity that is known to interact with this item.",
+      "rdfs:label": "bioChemInteraction",
+      "schema:domainIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:isPartOf": {
+        "@id": "http://bio.schema.org"
+      },
+      "schema:rangeIncludes": {
+        "@id": "schema:BioChemEntity"
+      },
+      "schema:sameAs": {
+        "@id": "https://schema.org/bioChemInteraction"
+      }
+    }
+  ]
+}
