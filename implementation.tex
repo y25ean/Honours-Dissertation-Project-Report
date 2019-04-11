@@ -21,7 +21,7 @@ Separating the file generation from the web application allowed the load times t
 \section{Scripting Tool}\label{sec:scriptingtool}
 
 \subsection{Choice of Language}
-After developing the initial prototype to help gather requirements and ensuring I was happy with the approach to utilise JSON-Schema to generate the form. The next step was to begin developing a tool that takes the declarative descriptions of the Bioschemas profiles and generates the required files (JSON and JSON-Schema).
+After developing the initial prototype to help gather requirements and ensuring I was satisfied with the approach to utilise JSON-Schema to generate the form. The next step was to begin developing a tool that takes the declarative descriptions of the Bioschemas profiles and generates the required files (JSON and JSON-Schema).
 
 To implement this tool, I had two different options available. I could either extend the Bioschemas GoWeb tool which generates the declarative description of the Bioschemas Profiles or create a separate tool in Python that takes the output of GoWeb and further processes it.
 
@@ -52,7 +52,7 @@ Once the methods of retrieving the information was figured out, the next stage o
 
 The final stage of the process was to generate JSON that is used to display additional information (examples and controlled vocabulary) along side the form on the web application. This used the same method as creating the JSON-Schema, by creating a Python dictionary of key value pairs and then utilising the Python library JSON to output the dictionary as JSON. Shown in Appendix \ref{sec:geneAdditionalInformation} is example of the generated JSON for the Bioschemas Gene profile.
 
-To summarise, the scripting tool generates two files for each Bioschemas profile: A JSON-Schema file that is used by the JavaScript library JSON-Editor (See Section \ref{sec:jsoneditor}) to display a form that the user can use to provide data to markup Bioschemas profiles and a JSON file that contains the controlled vocabularies and examples of the profiles properties to be displayed along side the form (See Section \ref{sec:additionalinformation}).
+To summarise, the scripting tool generates two files for each Bioschemas profile: A JSON-Schema file that is used by the JavaScript library JSON-Editor (See Section \ref{sec:jsoneditor}) to display a form that the user can use to markup Bioschemas profiles and a JSON file that contains the controlled vocabularies and examples of the profiles properties to be displayed along side the form (See Section \ref{sec:additionalinformation}).
 
 
 \newpage
@@ -107,12 +107,12 @@ For Properties that have a cardinality of many, items can be added through the "
    \label{fig:arrayDelete}
 \end{figure}
 
-{\setstretch{1.7}
+{\setstretch{1.65}
 \newpage
-The Property Tips are displayed using a custom script, see Section \ref{sec:additionalinformation} and is styled using Bootstrap 4. I decided to split the additional information into three collapsible sections, by marginality of the properties (Minimum, Recommended and Optional). Taking inspiration from the Bioschemas website, I decided that the best way to display the examples to the user was to use a modal pop-up, shown in Figure \ref{fig:geneEncodesExample}. The decision to separate and nest the additional information was taken to reduce the information overload to the user and to hopefully not confuse them straight away.\newline
+The Property Tips are displayed using a custom script, see Section \ref{sec:additionalinformation} and is styled using Bootstrap 4. I decided to split the additional information into three collapsible sections, by marginality of the properties (Minimum, Recommended and Optional). Taking inspiration from the Bioschemas website\footnote{\url{https://bioschemas.org/} (accessed 07/04/2019)}, I decided that the best way to display the examples to the user was to use a modal pop-up, shown in Figure \ref{fig:geneEncodesExample}. The decision to separate and nest the additional information was taken to reduce the information overload to the user and to hopefully not confuse them straight away.\newline
 
 \begin{figure}[!h]
- \centering\includegraphics[scale=0.45]{images/system/propertyExample.PNG}
+ \centering\includegraphics[scale=0.42]{images/system/propertyExample.PNG}
    \caption{Bioschemas Profile Gene Encodes Example}
    \label{fig:geneEncodesExample}
 \end{figure}
@@ -121,7 +121,7 @@ The Property Tips are displayed using a custom script, see Section \ref{sec:addi
 The Generated Markup section shows the user the generated markup based on the Bioschemas profile they selected and the information they provided, shown in Figure \ref{fig:generatedMarkup}. The web application generates three formats of machine-readable data: JSON-LD, Microdata and RDFa, which can be accessed through the appropriate navigation tabs. The "Download" button also allows the user to download the generated markup (which ever format is currently being displayed) into a HTML file.\newline
 
 \begin{figure}[!h]
- \centering\includegraphics[scale=0.39]{images/system/GeneratedData.PNG}
+ \centering\includegraphics[scale=0.38]{images/system/GeneratedData.PNG}
    \caption{Bioschemas Profile Markup DataCatalog Example}
    \label{fig:generatedMarkup}
 \end{figure}
@@ -132,86 +132,202 @@ The Generated Markup section shows the user the generated markup based on the Bi
 \subsection{Scripts, Libraries and APIs}\label{sec:libraries}
 
 \subsubsection{JSON-Editor} \label{sec:jsoneditor}
-To dynamically generate the forms for the Bioschemas profiles 
+To allow users to markup Bioschemas profiles, JSON-Schema\footnote{\url{https://json-schema.org/} (accessed 07/04/2019)} was used to dynamically generate forms using a JavaScript library. The JSON-Schema is generated by the scripting tool (See Section \ref{sec:scriptingtool}) that is then used by a library to generate and display a HTML form. Through the iterative development cycle, three libraries were used as requirements and limitations of the different libraries came to light. I will now discuss the two library used for the prototype system in comparison to the library used in the final system.
+
+The first iteration of the prototype was built using the JavaScript library SchemaForm.io\footnote{\url{http://www.schemaform.io/} (accessed 03/11/2018)}. It was quickly discovered that this library was inadequate for the system due to not supporting arrays of multiple types. Discussed in Section \ref{ch:prototyping}, properties that have a cardinality of many and multiple expected types can produce arrays of multiple types leading to an incompatibility. Listing \ref{lst:multipleTypesArray} is an example markup of the Bioschemas profile DataCatalog\footnote{\url{https://bioschemas.org/specifications/DataCatalog/} (accessed 07/04/2019)} in which the provider property has an array of multiple types (Organization\footnote{\url{https://schema.org/Organization} (accessed 07/04/2019)} and Person\footnote{\url{https://schema.org/Person} (accessed 07/04/2019)}) which ultimately could not be produced by this library.
+
+\vspace{1.5em}
+
+{\setstretch{1.0}
+\begin{center}
+\begin{lstlisting}[
+caption=DataCatalog Example Array of Multiple Types,
+captionpos=b,
+label={lst:multipleTypesArray},
+xleftmargin=0pt,
+xrightmargin=10pt,
+language=HTML,
+showstringspaces=false]
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "DataCatalog",
+    "provider": [
+        {
+            "@type": "Organization",
+            "name": "The International Union of Basic and Clinical Pharmacology",
+            "url": "http://www.iuphar.org/"
+        },
+        {
+            "@type": "Person",
+            "givenName": "John",
+            "familyName": "Doe"
+            "url": "http://www.johndoe.com"
+        }
+    ]
+}
+</script>
+\end{lstlisting}  
+\end{center}
+}
+
+\newpage
+{\setstretch{1.85}
+The second iteration of the prototype was built using the JavaScript library JSON-Forms\footnote{\url{https://github.com/brutusin/json-forms} (accessed 03/11/2018)}. In comparison to the first library used, this library was able to support arrays of multiple types but did not support the requirement of recursion. As previously discussed in Section \ref{ch:prototyping}, that in order to generate markup based on the Bioschemas profiles, the form should be able to handle recursive property types. This is due to properties in Schema.org types having the ability to contain themselves as an expected type.
+
+The JSON-Schema specification has the ability to define schemas that can reused and combined elsewhere in the schema \cite{jsonSchemaComplex}. Once a schema has been defined it can then be referenced using the key \texttt{\$ref} where the value is a universal resource identifier (URI) of the schema. Shown in Listing \ref{lst:dataCatalogRecursion}, the hema is defined and is then is referenced within the DataCatalog schema using a local URI. The ability to reference schema allows schemas to be self-referential and can therefore create recursive schemas \cite{jsonSchemaComplex}. Shown in Listing is an example of a recursive schema in which the schema PropertyValue contains itself as a value.
+
+Although JSON-Schema specification supports recursive schemas which in turn can handle recursive property types that is needed to support the markup of Bioschemas profiles, the library JSON-Forms was unable to support this specification and therefore Bioschemas profiles.
+}
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\bfseries,
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
 
 
-The approach I decided was best to dynamically create the forms for the Bioschemas profiles was to utilise JSON-Schema. 
+{\setstretch{0.9}
+\begin{center}
+\begin{lstlisting}[
+caption=DataCatalog Recursive Schema Example,
+captionpos=b,
+label={lst:dataCatalogRecursion},
+showstringspaces=false,
+basicstyle=\small]
+
+"schema":{
+    "title":"DataCatalog",
+    "type":"object",
+    "properties":{
+        "identifier":{
+            "title":"identifier",
+            "oneOf":[
+                {
+                    "$ref":"#/definitions/PropertyValue"
+                }
+            ]
+        }
+    },
+    "definitions":{
+        "PropertyValue":{
+             "title":"PropertyValue",
+             "type":"object",
+             "properties":{
+                "valueReference":{
+                    "title":"valueReference",
+                    "oneOf":[
+                        {
+                            "$ref":"#/definitions/PropertyValue"
+                        }
+                    ]
+                }
+             }
+        }
+    }
+}
+
+\end{lstlisting}  
+\end{center}
+}
 
 
-The JSON-Schema is generated by the scripting tool (See Section \ref{sec:scriptingtool}) and using a library the JSON-Schema is displayed as a form. Through the iterative design cycle, three libraries were used as requirements and limitations of the different libraries came to light. I will now discuss the first two libraries used in the prototype system in comparison to the library used in the final system.
-
-The prototype system had two development iterations. The first iteration, was built using SchemaForm.io\footnote{\url{http://www.schemaform.io/} (accessed 03/11/2018)}. As mention in the prototyping Section \ref{ch:prototyping}, I quickly discovered that the library was inadequate for this system due not being able to support JSON arrays of multiple types. why is this a problem?
-
-
-The second iteration was built using JSON-Forms\footnote{\url{https://github.com/brutusin/json-forms} (accessed 03/11/2018)}. Compared with the first library used, this library was able to support arrays of multiple types. But did not fulfil the rest of the requirements of recursion. example of recursion
-
-The final system was built using JSON-Editor\footnote{\url{https://github.com/json-editor/json-editor} (accessed 16/03/2019)}. The following list is the set of features that JSON-Editor supports that were utilised to satisfy the requirements of the proposed system:
-
-examples of how these features have been utilised
+\newpage
+The final system was built using the JavaScript library JSON-Editor\footnote{\url{https://github.com/json-editor/json-editor} (accessed 16/03/2019)}. The following list is the set of features supported by JSON-Editor that were utilised to allow users to markup Bioschemas profiles:
 
 {\setstretch{1.7}
 \begin{description}
-  \item[Arrays]
-  Supports arrays of multiple types of JSON objects.
-  \item[References] 
+  \item[Arrays: ]
+  Supporting the creation of arrays allows the cardinality of the property to be supported. 
+  \item[One Of: ]
+  Supports the ability to choose the expected type of the property.
+  \item[References: ] 
   Supports the ability to create a definition and to be reference at other points.
-  \item[Recursion]
+  \item[Recursion: ]
   Supports the ability for recursive definitions.
-  \item[One Of]
-  Supports the ability to choose between different types.
-  \item[Descriptions]
-  Supports the ability to display a description next to the property.
-  \item[Property Ordering]
-  Supports the ability to order the properties that are displayed on screen.
-  \item[Required Properties]
-  Supports the ability to require certain properties.
-  \item[Default \& Hidden Properties]
-  Supports the ability to hide and provide default values of properties to support JSON-LD.
+  \item[Descriptions: ]
+  Supports the ability to display a description next to the property. display descriptions
+  \item[Property Ordering: ]
+  Supports the ability to order the properties that are displayed on screen.  marginality ordering
+  \item[Required Properties: ]
+  Supports the ability to require certain properties. marginality
+  \item[Default \& Hidden Properties: ]
+  deafault properties to support JSON-LD with @type @context.
+  hidden properties removes the default properties from the users views to keep the form as simple as possible.
 \end{description}
 }
-%FOR JSON-LD HIDDEN ATTRIBUTES
-%FOR RECURSION
-%FOR REFERENCES
-%ONE OF
-%ARRAYS
-%MINIMUM
-%PROPERTY ORDERING
-%DESCRIPTIONS
 
 \subsubsection{Additional Information Panel} \label{sec:additionalinformation}
-A custom JavaScript script was used to display the additional information (examples and controlled vocabulary) to the user. Originally, I had planned to use a JavaScript library like Tabular\footnote{\url{https://github.com/json-editor/json-editor} (accessed 16/03/2019)} to display the JSON file containing the additional information in a table. I then decided that in order to best display the information to the user, I needed to create a custom script to tailor it towards my needs. The final output for the script can be seen in Figure \ref{fig:geneProfile}.
+A custom JavaScript script was used to display additional information (examples and controlled vocabulary) to the user to help markup Bioschemas profiles. Originally, I had planned to use a JavaScript library like Tabular\footnote{\url{https://github.com/json-editor/json-editor} (accessed 16/03/2019)} to display the JSON file containing the additional information in a table. As previously mentioned in Section \ref{sec:userInterface}, I decided that displaying the information could overwhelm the user with the amount of information. Therefore, I created a custom script to display the information in a controlled way which can be seen in Figure \ref{fig:geneProfile}.
 
 \subsubsection{RDF Translator API}
 The RDF Translator API\footnote{\url{https://rdf-translator.appspot.com/} (accessed 16/03/2019)} was used to convert the generated JSON-LD into additional machine-readable formats for the web: RDFa and Microdata. The client-side makes a AJAX request containing the JSON-LD that is to be converted to the desired formats. The resulting data is returned in either RDFa or Microdata, dependant on the format specified in the request URL. 
 
-As RDFa and Microdata use HTML as a basis to add machine-readable data to the web, the data returned is in the HTML format. To display the HTML to the user, it first needs to be escaped so that it will be displayed correctly on the page. This was achieved by using jQuery's text\footnote{\url{http://api.jquery.com/text/} (accessed 16/03/2019)} function to set the content of the selected element to the HTML as it automatically escapes the HTML necessary to be displayed.
+As RDFa and Microdata use HTML as a basis to add machine-readable data to the web, the data returned is in the HTML format. To display the HTML to the user, it first needs to be escaped so that it will be displayed correctly on the web page. This was achieved by using jQuery's text\footnote{\url{http://api.jquery.com/text/} (accessed 16/03/2019)} function to set the content of the selected element to the HTML as it automatically escapes the HTML necessary to be displayed.
 
 \subsubsection{Bootbox.js}
-Bootbox.js\footnote{\url{https://github.com/makeusabrew/bootbox} (accessed 16/03/2019)} was used to automatically generate and display the pop-up modals to display the examples, shown in Figure \ref{fig:geneEncodesExample}. 
+Bootbox.js\footnote{\url{https://github.com/makeusabrew/bootbox} (accessed 16/03/2019)} was used to programmatically create and display Bootstrap pop-up modals to provide the user with example markups. A library was used to manage this functionality as creating, managing and removing DOM elements and JavaScript event handlers 
+
+
+shown in Figure \ref{fig:geneEncodesExample}. 
+
 
 \subsubsection{Download.js}
-Download.js\footnote{\url{http://danml.com/download.html} (accessed 16/03/2019)} was used to allow the user to download the generated markup of their selected Bioschemas profile. An additional library was needed as the File, FileWriter and FileSystem APIs that can be used to store files on a client machine are currently only supported by Chromium-based browsers. This issue was not inline with the requirements outlined at the beginning of the project (Non-Functional Requirement NFR3: The system should be accessible through the top internet browsers: Google Chrome, Mozilla Firefox and Apple Safari.), so an additional library was used to provide the desired functionality.
+Download.js\footnote{\url{http://danml.com/download.html} (accessed 16/03/2019)} was used to allow the user to download the generated markup of their selected Bioschemas profile. An additional library was needed as the W3C standard File API: Writer that can be used to store files on a client's machine is currently only supported by the browser Google Chrome \cite{fileAPI}\cite{fileAPISupport}. This issue was not inline with the requirements outlined at the beginning of the project (Non-Functional Requirement NFR3: The system should be accessible through the top internet browsers: Google Chrome, Mozilla Firefox and Apple Safari.), so an additional library was used to provide the desired functionality.
 
 \subsection{Hosting the Web Application}
-The implementation began on my personal machine, with the intention of deploying the web application on a publicly accessible web server. The decision to make it publicly accessible was to enable the Bioschemas community during meetings and workshops to provide feedback (See Section \ref{sec:prototyUsability}) on the system whilst the system is still in development, without having Dr. Alasdair Gray host the web application himself.
+The implementation began on my personal machine, with the intention of deploying the web application on a publicly accessible web server. The decision to make it publicly accessible was to enable the Bioschemas community during meetings and workshops to provide feedback (See Section \ref{sec:prototyUsability}) on the system whilst the system was still in development, without having Dr. Alasdair Gray host the web application himself.
 
-For hosting this system, I chose to host it on the Heriot-Watt MACS Student/Development web server. The choice of using this server made the most sense, as a student at Heriot-Watt University I already had access and with my choice of languages and libraries it would not require any additional setup that would be typically required by hosting the web application on a private web server or using more complex libraries.
+The web application built is a HTML/JavaScript application and because of this it can be deployed on any standard web server. For this reason, I was able to host the application on the the Heriot-Watt MACS Student/Development web server. The choice to use this server was made as a student at Heriot-Watt University I was already given access and along with the ability to host the application on any web server no additional setup would be required. 
 
-\newpage
+
+
 \section{Implementation Challenges}\label{sec:issues}
 As the system relies heavily on the generation of JSON-Schema and an open-source library to utilise the JSON-Schema, it was inevitable that there would a few issues surrounding this area. The key use and generation issues encountered during development with JSON-Schema were:
+
+{\setstretch{1.6}
 \begin{enumerate}
+  \item Bioschemas profile data format inconsistencies.
   \item JSON-Editor unable to handle large JSON-Schema
   \item JSON-Editor unable to handle JSON-Schema specifications.
-  \item Bioschemas profile data format inconsistencies.
 \end{enumerate}
+}
 
-\subsection{Issue 1:Large JSON-Schema}
-This issue was caused by the extensive number of types and properties provided by the Schema.org vocabulary and the JavaScript library JSON-Editor not being able to handle the size of the JSON-Schema that describes the Bioschemas profiles.
+\subsection{Issue 1: Data Format Inconsistencies}
+%Conjoined lists of properties
+This issue was caused by the inconsistent formatting of data in the declarative descriptions of the Bioschemas profiles. As Bioschemas is currently in a stage where they are rapidly evolving and refining their profiles, older formats of data still exists in a few of the current profiles. 
 
-For example, the Bioschemas profile DataCatalog\footnote{\url{http://bioschemas.org/specifications/DataCatalog/} (accessed 02/03/2019)} has the property called identifier, where the expected types are: PropertyValue, Text or URL. As PropertyValue is a Schema.org type, it has 20 properties the user could select. Furthermore because Schema.org types reference each other, in this type alone it would reference 12 additional Schema.org types, exponentially increasing the overall size of the JSON-Schema.
+In a Bioschemas profile, a profile has a list of properties where each property has a list of expected types. Once the declarative description of a profile has been converted from YAML to JSON, each property should contain an array of expected types. Although, in some cases the list of expected types are conjoined into a singular string. For example, in the ProteinAnnotation\footnote{\url{http://bioschemas.org/specifications/ProteinAnnotation/} (accessed 01/03/2019)} profile, the expected output for the property "location" is shown in Listing \ref{lst:expectedOutput}, while the actual output is shown in Listing \ref{lst:actualOutput}.
 
-To handle this issue, a compromise needed to be made to limit the size of the JSON-Schema to allow it work with the JSON-Editor. With the help of my supervisor, Dr. Alasdair Gray, it was decided to utilise JSON-LD's ability to externally reference JSON-LD object through an Internationalised Resource Identifier (IRI). This allowed us to dramatically reduce the size of the JSON-Schema and to function with the JSON-Editor.
+\lstset{
+    string=[s]{"}{"},
+    stringstyle=\color{black},
+    comment=[l]{:},
+    commentstyle=\color{black},
+}
+\begin{lstlisting}[
+caption=Expected Output,
+captionpos=b,
+label={lst:expectedOutput},
+xleftmargin=60pt,
+xrightmargin=10pt,
+language=html]
+["Place","PostalAddress","PropertyValue","Text", "URL"]
+\end{lstlisting}
+
+\begin{center}
+\begin{lstlisting}[
+caption=Actual Output,
+captionpos=b,
+label={lst:actualOutput},
+xleftmargin=60pt,
+xrightmargin=10pt,
+showstringspaces=false]
+["Place orPostalAddress orPropertyValue orText orURL"]
+\end{lstlisting}  
+\end{center}
+
+To solve this issue, I separated the singular string into an array of individual types and removed the additional "or" at the start of the individual strings, keeping the format consistent with the expected output. This kept the format of the expected types consistent across the different Bioschemas profiles and ready to be processed.
 
 \newpage
 \subsection{Issue 2: JSON-Schema Specifications}
@@ -228,34 +344,49 @@ The second issue encountered was
 
 To help the development of the JSON-Editor and contribute to the open-source community, I fedback the issues encountered by submitting issues on their Github. Issue 248\footnote{\url{https://github.com/json-editor/json-editor/issues/248} (accessed 02/03/2019)} was the recursion issue and Issue 323\footnote{\url{https://github.com/json-editor/json-editor/issues/323} (accessed 02/03/2019)}  was the string format issue. 
 
-\subsection{Issue 3: Data Format Inconsistencies}
-%Conjoined lists of properties
-This issue was caused by the inconsistent formatting of data in the declarative descriptions of the Bioschemas profiles. As Bioschemas is currently in a stage where they are rapidly evolving and refining their profiles, older formats of data still exists in a few of the current profiles. 
 
-In a Bioschemas profile, a profile has a list of properties where each property has a list of expected types. Once the declarative description of a profile has been converted from YAML to JSON, each property should contain an array of expected types. Although, in some cases the list of expected types are conjoined into a singular string. For example, in the ProteinAnnotation\footnote{\url{http://bioschemas.org/specifications/ProteinAnnotation/} (accessed 01/03/2019)} profile, the expected output for the property "location" is shown in Listing \ref{lst:expectedOutput}, while the actual output is shown in Listing \ref{lst:actualOutput}.
+\newpage
 
-\begin{lstlisting}[
-caption=Expected Output,
-captionpos=b,
-label={lst:expectedOutput},
-xleftmargin=60pt,
-xrightmargin=10pt]
-["Place","PostalAddress","PropertyValue","Text", "URL"]
+
+\subsection{Issue 3: Large JSON-Schema}
+This issue was caused by the extensive number of types and properties provided by the Schema.org vocabulary and the JavaScript library JSON-Editor not being able to handle the size of the JSON-Schema that describes the Bioschemas profiles. For example, the Bioschemas profile DataCatalog\footnote{\url{http://bioschemas.org/specifications/DataCatalog/} (accessed 02/03/2019)} has the property called identifier, where the expected types are: PropertyValue, Text or URL. As PropertyValue is a Schema.org type, it has 20 properties the user could select. Furthermore because Schema.org types reference each other, in this type alone it would reference 12 additional Schema.org types, exponentially increasing the overall size of the JSON-Schema.
+
+To handle this issue, a compromise needed to be made to limit the size of the JSON-Schema to allow it work with the JSON-Editor. With the help of my supervisor, Dr. Alasdair Gray, it was decided to utilise JSON-LD's ability to externally reference JSON-LD object through an Internationalised Resource Identifier (IRI). This allowed us to dramatically reduce the size of the JSON-Schema and to function with the JSON-Editor.
+
+\noindent\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=code 1, captionpos=b,language=html,showstringspaces=false,basicstyle=\footnotesize,]{Name}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "DataCatalog",
+     "provider":{
+        "@type":"Person",
+        "givenName":"John",
+        "familyName:"Doe",
+        "gender": "Male",
+        "birthDate": "01/01/1970"
+    }
+}
+</script>
 \end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=code 2, captionpos=b,language=html,showstringspaces=false,basicstyle=\footnotesize]{Name}
+<script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "DataCatalog",
+    "provider": {
+        "@type": "Person",
+        "@id": "http://www.example.com/JohnDoe"
+    }
+}
+</script>
+\end{lstlisting}
+\end{minipage}
 
-\begin{center}
-  \begin{lstlisting}[
-caption=Actual Output,
-captionpos=b,
-label={lst:actualOutput},
-xleftmargin=60pt,
-xrightmargin=10pt]
-["Place orPostalAddress orPropertyValue orText orURL"]
-\end{lstlisting}  
-\end{center}
 
-To solve this issue, I separated the singular string into an array of individual types and removed the additional "or" at the start of the individual strings, keeping the format consistent with the expected output. This kept the format of the expected types consistent across the different Bioschemas profiles and ready to be processed.
-
+\newpage
 \section{Comparison System}\label{sec:comparisonsystem}
 The final usability evaluation (See Section \ref{sec:finalUsability}) consisted of comparing the developed system against a second similar system. The system that was chosen for comparison was Kaizen, previously mentioned in Section \ref{sec:kaizen}. As Kaizen is a Google Sheets template it can be easily modified, making it the best choice for the comparison system as it can customised to suit the needs of the evaluation.
 
@@ -273,6 +404,8 @@ datacatalog was created
 
 examples given, no additional information, pointed to external source
 
+
+\newpage
 \section{Maintainability}
 After the successful completion of both the main and comparison system, the maintainability of each of the systems was compared to see how easy the systems were to keep up to date with the latest Bioschemas profiles.
 

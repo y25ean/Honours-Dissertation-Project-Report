@@ -47,6 +47,7 @@ Introduced in 2005 \cite{microformasIntroduction}, Microformats was the first ap
 
 Many varieties of microformats were developed to describe particular types of information such as events, news or products. However, only hCalander \cite{hcalanderMicroformat} and hCard \cite{hcardMicroformat} were formally published, with the others remaining as drafts.
 
+\newpage
 Although microformats are simple and easy to use, they come with limitations. One limitation is that microformats have issues with scoping \cite{microformatsIssues}. Meaning if one type overlaps another, microformats does not have a way to identify which properties belongs to which type. Another limitation is name spacing \cite{microformatsIssues}. Different microformats may use the same property name, leading to ambiguity of the property definitions. With these limitations and the numerous formats available it can become confusing for the webmasters \cite{schemaOrg}. Therefore, webmasters have begun to favour new and more advanced machine-readable formats. 
 
 The hCard example shown in Listing \ref{lst:hCard} represents a person. The HTML element \texttt{link} specifies which type of microformat is used through the attribute \texttt{href}, in this case hCard. The \texttt{span} element with the attribute \texttt{class="fn"} was used to specify the person's full name of \say{John Doe}. The \texttt{img} element with attribute \texttt{class="photo"} was used to specify a photo of the person, \say{johndoe.jpg}. Finally, the \texttt{a} element with attribute \texttt{class="url"} was used to specify the homepage for this person, \say{http://www.johndoe.com} \cite{hcardMicroformat}.\newline
@@ -79,14 +80,15 @@ RDFa (Resource Description Framework in attributes) is a human-readable markup o
 \end{enumerate}
 }
 
-The advantage of RDFa compared to microformats, is that RDFa has the ability to declare the name space of the of the property. This eliminates any ambiguity of the property. RDFa also allows the use of more than one vocabulary. This aids webmasters in describing information that may not covered in certain vocabularies. \newpage
+\newpage
+The advantage of RDFa compared to microformats, is that RDFa has the ability to declare the name space of the of the property. This eliminates any ambiguity of the property. RDFa also allows the use of more than one vocabulary. This aids webmasters in describing information that may not covered in certain vocabularies. 
 
 The RDFa example shown in Listing \ref{lst:rdfa} represents a person. The element \texttt{p} specifies the vocabulary used with attribute \texttt{vocab}, in this case Schema.org. It also specifies the type of property is being described, a Person, through the \texttt{typeof} attribute. The \texttt{span} element with the attribute \texttt{property="name"} was used to specify the person's name of \say{John Doe}. The \texttt{img} element with attribute \texttt{property="image"} was used to specify a photo of the person, \say{johndoe.jpg}. Finally, the \texttt{a} element with attribute \texttt{property="url"} was used to specify the URL for this person, \say{http://www.johndoe.com}.\newline
 
 \noindent
 \textbf{RDFa Example:}
 {\setstretch{1.0}
-\begin{lstlisting}[language=HTML,caption={A RDFa Example},captionpos=b,label={lst:rdfa}]
+\begin{lstlisting}[language=HTML,caption={A RDFa Example},captionpos=b,label={lst:rdfa},showstringspaces=false]
 <p vocab="http://schema.org/" typeof="Person">
     <span property="name">John Doe</span>
     <img src="johndoe.jpg" alt="John Doe" property="image" />
@@ -108,7 +110,7 @@ The Microdata example shown in Listing \ref{lst:micro} represents a Person. The 
 \noindent
 \textbf{Microdata Example:}
 {\setstretch{1.0}
-\begin{lstlisting}[language=HTML,caption={A Microdata Example},captionpos=b,label={lst:micro}]
+\begin{lstlisting}[language=HTML,caption={A Microdata Example},captionpos=b,label={lst:micro},showstringspaces=false]
 <div itemscope="itemscope" itemtype="http://schema.org/Person">
     <span itemprop="name">John Doe</span>
     <img src="johndoe.jpg" alt="John Joe" itemprop="image" />
@@ -130,14 +132,14 @@ The JSON-LD example shown in Listing \ref{lst:jsonld} represents a person. The k
 \noindent
 \textbf{JSON-LD Example:}
 {\setstretch{1.0}
-\begin{lstlisting}[language=HTML,caption={A JSON-LD Example},captionpos=b,label={lst:jsonld}]
+\begin{lstlisting}[language=HTML,caption={A JSON-LD Example},captionpos=b,label={lst:jsonld},showstringspaces=false]
 <script type="application/ld+json">
 {
     "@context":"http://schema.org",
     "@type":"Person",
     "name":"John Doe",
     "image":"johndoe.jpg",
-    "url":"http://wwww.johndoe.com"
+    "url":"http://www.johndoe.com"
 }
 </script>
 \end{lstlisting}
@@ -182,7 +184,7 @@ Google's Dataset search\footnote{\url{https://toolbox.google.com/datasetsearch} 
 
 The profile adds a layer over the existing Schema.org model that categorises properties of a type into two categories: required and recommended. This helps the web masters pick which properties to include in their markup. For example, in Google's Dataset\footnote{\url{https://developers.google.com/search/docs/data-types/dataset} (accessed 20/11/2018)} they require 2 properties and recommend 10. While Schema.org's Dataset\footnote{\url{https://schema.org/Dataset} (accessed 20/11/2018)} only provide a list of 103 properties with no indication to web masters which ones to use. With this information they can analyse where the dataset has come from and find which publications are describing or discussing that particular dataset \cite{googleDatasetBlog}.
 
-Additionally the profile suggests best practices to follow when creating the markup. For example, Google suggests to use the isBasedOn property if the dataset is a republished dataset that has been significantly changed, or if the dataset derives from or aggregates several originals \cite{googleDataset}. This allows Google to identify where datasets have originated from and potentially find overlapping studies effectively making a larger dataset. With a larger dataset the effect of any outliers and bad data could be reduced or even negated \cite{googleDatasetCMS}.
+Additionally, the profile suggests best practices to follow when creating the markup. For example, Google suggests to use the isBasedOn property if the dataset is a republished dataset that has been significantly changed, or if the dataset derives from or aggregates several originals \cite{googleDataset}. This allows Google to identify where datasets have originated from and potentially find overlapping studies effectively making a larger dataset. With a larger dataset the effect of any outliers and bad data could be reduced or even negated \cite{googleDatasetCMS}.
 
 
 \subsection{Bioschemas.org}
