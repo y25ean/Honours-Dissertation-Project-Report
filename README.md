@@ -1,4 +1,4 @@
-# Honours-Dissertation-Project
+# Honours-Dissertation-Project-Report
 
 Title: Supporting the Creation of Markup for Web Resources<br/>
 University: Heriot-Watt University<br/>
