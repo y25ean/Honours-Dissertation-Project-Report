@@ -9,7 +9,7 @@ As each machine-readable data format has their own advantages and disadvantages,
 Section \ref{sec:schema} describes how properties and types are linked through a single hierarchy. However, due to the extensive number of properties each type can have, webmasters have a difficult time choosing which properties to include. Profiles like Google Dataset Search and Bioschemas aim to help by recommending and suggesting properties that webmasters should include when marking up resources. Bioschemas goes one step further and enhances the Schema.org model by providing an additional layer of constraints (marginality, cardinality and controlled vocabularies)\cite{gray2017bioschemas}. Additionally, Bioschemas aims to recommend 6 properties in a type to users in order to get the best result possible in discovery searches.
 
 \newpage
-Although there exists many systems to help users generate Schema.org markups, from my research all systems found are limited to a small selection of types. The Bioschemas community are interested in a reconfigurable system which takes a declarative description of a Bioschemas specification and dynamically generates a form to help users create their markup. This is due to Bioschemas rapidly evolving, so ultimately needs a system that is able to keep up with new profiles and types.
+Although there exists many systems to help webmasters generate Schema.org markups, from my research all systems found are limited to a small selection of types. The Bioschemas community are interested in a reconfigurable system which takes a declarative description of a Bioschemas specification and dynamically generates a form to help users create their markup. This is due to Bioschemas rapidly evolving, so ultimately needs a system that is able to keep up with new profiles and types.
 
 \section{Aim \& Objectives}
 The aim of this project is to develop a system to support users in the creation of Bioschemas markup for their web resources.
@@ -193,7 +193,7 @@ In the life science community there is demand to add new types and properties to
 
 Bioschemas not only extends Schema.org with new types and properties for biological entities but also adds a profile layer over the existing Schema.org model \cite{gray2017bioschemas} providing additional constraints. The additional constraints are:
 
-{\setstretch{1.0}
+{\setstretch{1.4}
 \begin{enumerate}
     \item The marginality of the properties agreed by the community which are: minimum, recommended or optional. 
     \item The cardinality of the property, i.e whether the properties occurs once or many times. 
@@ -212,23 +212,26 @@ While researching the topics previously discussed, I took a look at existing too
 Technical SEO's Schema Markup Generator\footnote{\url{https://technicalseo.com/seo-tools/schema-markup-generator/}(accessed 07/11/2018)} shown in Figure \ref{fig:technicalSEO} allows users to create Schema.org markup. By selecting a Schema.org markup from a list of 10, it then displays a form with the required field that the user will then fill out in order to create said markup. It then generates JSON-LD and Microdata for the user to then use in their website. Additionally it provides quick access to Google's structured data testing tool to validate the generated data. \newline
 
 \begin{figure}[h!]
- \centering\includegraphics[scale=0.45]{images/"seo_markup".PNG}
+ \centering\includegraphics[scale=0.55]{images/"seo_markup".PNG}
    \caption{Technical SEO Schema Markup Generator}
     \label{fig:technicalSEO}
 \end{figure}
 
 \newpage
 \subsubsection*{Kaizen}\label{sec:kaizen}
+{\setstretch{1.8}
 Kaizen\footnote{\url{https://www.kaizen.co.uk/blog/seo/the-ultimate-template-for-structured-data-markup/}(accessed 03/11/2018)} shown in Figure \ref{fig:kaizen} is a Google sheets\footnote{\url{https://www.google.co.uk/sheets/about/}(accessed 03/11/2018)} template to help create markups from Schema.org. Kaizen supports the markup generation of 4 Schema.org types: organisation,video object, article and product rating. Due to its nature of being a spreadsheet it is more complex and not as user friendly as Technical SEOs. To generate the markup the user selects the sheet of the type they would like to generate and fill in the appropriate cells. It also provides an example markup to help the users fill out the sheet.\newline
 
 \begin{figure}[h!]
- \centering\includegraphics[scale=0.30]{images/"kaizen".PNG}
+ \centering\includegraphics[scale=0.35]{images/"kaizen".PNG}
    \caption{Kaizen Template}
    \label{fig:kaizen}
 \end{figure}
 
 \subsubsection*{Customisability}\label{sec:customisability}
 Although these systems are extremely useful in helping the user generate their Schema.org markup, both have the limitation of the number of Schema.org markup types they support. Technical SEO's markup generator is a private system, so in order to add new types, a user would have to contact Technical SEO in hopes they would update the system to support the types they would like. On the other hand, Kaizen's system is completely open source due to its nature of being a spreadsheet template. This allows users to use the provided markup templates as an example and customise them to create a new type or add in additional properties.
+
+}
 
 \subsection{Validation}
 \subsubsection*{Structured Data Testing Tool}

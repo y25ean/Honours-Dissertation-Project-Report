@@ -1,22 +1,26 @@
 \chapter{Evaluation}
 
 \section{Usability Evaluation}
+{\setstretch{1.9}
 Once development of the system had come to a conclusion a usability evaluation was carried out in order to find out how well users interacted with the system. The system is aimed towards members of the Bioschemas and life science communities. These users will likely have varying knowledge and technical abilities, making it vital to design an interface that is as user-friendly and intuitive as possible. For these reasons, members of these communities would have been the ideal test subjects for this evaluation. However, due to logistical issues the ideal test subjects would not be able to participate in A/B testing within a controlled environment. To receive feedback from the ideal test subjects as well as conduct A/B testing to determine the usability of the system, the usability evaluation was carried out in two stages:
 
+
+{\setstretch{1.7}
 \begin{enumerate}
     \item An initial evaluation of the prototype system with the ideal test subjects.
     \item A final evaluation of the complete system with alternate test subjects.
 \end{enumerate}
+}
 
 \subsection{Prototype Usability Evaluation}\label{sec:prototyUsability}
-The prototype usability evaluation subjects consisted of participants from various Bioschemas Meetings\footnote{\url{http://bioschemas.org/meetings/} (accessed 07/03/2019)} that were run by Dr. Alasdair Gray. The evaluation was conducted with the first prototype system (Section \ref{ch:prototyping}) that was used to help gathered the initial system requirements.
+The prototype usability evaluation subjects consisted of participants from various Bioschemas Meetings\footnote{\url{http://bioschemas.org/meetings/} (accessed 07/03/2019)} that were run by Dr. Alasdair Gray. The evaluation was initially conducted with the first prototype system (Section \ref{ch:prototyping}) that was used to help gathered the initial system requirements and later a second prototype system comparable to the final system (Section \ref{sec:userInterface}) without the additional information panel.
 
-The prototype usability test did not consist of a set task. The test subjects were given a demonstration of the prototype and then were given the opportunity to develop markup for their own data resource. Once they tested the prototype they were asked to fill out an evaluation questionnaire shown in Appendix \ref{chp:prototypeUsabilityQuestionaire} on various aspects of the system and any additional features they would like to see. This information was then used to improve the final system and tailor it towards the end user. Although useful, the information collected may not be definitive. By not having a set task and control over the conditions the test was conducted in, the resulting information may be affected in comparison to a controlled usability test.
+}
 
-\subsubsection{Prototype Usability Results}
+The prototype usability test did not consist of a set task. The test subjects were given a demonstration of the prototype and then were given the opportunity to create markup for their own data resource. Once they tested the prototype they were asked to fill out an evaluation questionnaire shown in Appendix \ref{chp:prototypeUsabilityQuestionaire} on various aspects of the system and any additional features they would like to see. This information was then used to improve the final system and tailor it towards the end user. Although useful, the information collected may not be definitive. By not having a set task and control over the conditions the test was conducted in, the resulting information may be affected in comparison to a controlled usability test.
 
-The prototype usability questionnaire was completed by fifteen test subjects. The questionnaire presented test subjects with a total of seven questions. Questions one to four, used a scale, ranging from one to ten, to asses their current knowledge and how they felt about the interface of the prototype. Question five and six, asked the subjects about the information provided and the results. Finally, question seven asked the test subjects to provided written feedback on what features they would like added to the final system. 
-
+\subsubsection{First Prototype Usability Results}
+The prototype usability questionnaire was completed by eleven test subjects. The questionnaire presented test subjects with a total of seven questions. Questions one to four, used a scale, ranging from one to ten, to asses their current knowledge and how they felt about the interface of the prototype. Question five and six, asked the subjects about the information provided and the results. Finally, question seven asked the test subjects to provided written feedback on what features they would like added to the final system. 
 
 As show in Figures \ref{fig:prototypeQuestion1} and \ref{fig:prototypeQuestion2}, the test subjects had a wide range of familiarity with Schema.org and Bioschemas.org, the underlying premise of the system. This information highlighted the necessity to create the final system to be as user-friendly as possible, by providing all the information necessary to use the system without any previous knowledge. \newline 
 \begin{figure}[!h]
@@ -53,7 +57,7 @@ From questions three and four, the overall consensus was that the interface of t
 
 
 {\setstretch{1.7}
-Question five had a clear divide in answers from test subjects, as shown in Figure \ref{fig:prototypeQuestion5}. This divide may be due to the nature of the prototype usability test, as test subjects were instructed to create their own examples. This meant test subjects without any personal data or previous knowledge looked for examples to use, but none were provided on the prototype system. For the final system, this feedback was taken into consideration and where possible additional information like examples and controlled vocabularies were provided.\newline
+Question five had a clear divide in answers from test subjects, as shown in Figure \ref{fig:prototypeQuestion5}. This divide may be due to the nature of the prototype usability test, as test subjects were instructed to create their own markups. This meant test subjects without any personal data or previous knowledge looked for examples to use, but none were provided on the prototype system. For the final system, this feedback was taken into consideration and where possible additional information like examples and controlled vocabularies were provided.\newline
 \begin{figure}[!h]
   \centering
   \begin{minipage}[b]{0.47\textwidth}
@@ -79,7 +83,10 @@ Question seven asked test subjects if there was any extra features that they wou
 
 In summary, this prototype usability evaluation has been successful in showing that the core functionality and usability of the system works well; although the information provided to the users could be vastly improved. The prototype system was used as a starting platform for the final system and with the feedback provided, the final system was tailored directly towards the end user.  
 
-\textbf{prototype usability study on a version of the final system only two people *}
+\newpage
+\subsubsection{Second Prototype Usability Results}
+The prototype usability questionnaire was completed by two test subjects for the second version of the prototype. The questionnaire presented contained the same questions previously given to test subjects in the first prototype usability evaluation (See Section \ref{sec:prototyUsability}). Unfortunately as only two test subjects completed the questionnaire in which no qualitative feedback was given, no definitive conclusion can be draw to compare the first prototype to the second. From the quantitative data collected, shown in Appendix \ref{chp:prototypeSecondResults}, we can see that test subjects thought the interface was easy to navigate and use and that the prototype was appealing and attractive as well as providing the desired functionality, but these conclusions can not be considered definitive due to the environment in which the usability evaluation was conducted in and the low participation rate.  
+
 
 \subsection{Final Usability Evaluation}\label{sec:finalUsability}
 The final usability evaluation subjects consisted of students from Heriot-Watt University, mainly consisting of students with a Computer Science background. To test the usability of the system developed , a second similar system was used for comparison. In the following sections I will refer to the system developed as \textbf{System A}, which can be seen in Section \ref{sec:userInterface}, and the comparison system as \textbf{System B}, which can be seen in Section \ref{sec:comparisonsystem}.
@@ -89,7 +96,7 @@ For each of the systems, the subjects were given a set of tasks to complete. The
 Once the users completed their tasks they were asked to fill out a short questionnaire on each system. This questionnaire asked the users to evaluate various aspects of the system as well as leaving any recommendations to improve the system. The task sheet, questionnaire and consent form signed by the tests subjects can be found in Appendix \ref{chp:finalUsabilityStudy}. 
 
 \subsubsection{Tasks}
-Each test subject was assigned the same three tasks for each system, although an additional task was required for System A. Test subjects will begin Tasks 1, 3 and 4 at the respective Home Page of the system. Task 2 will start where Task 1 left off.
+Each test subject was assigned the same three tasks for both systems, although an additional task was required for System A. Test subjects will begin Tasks 1, 3 and 4 at the respective Home Page of the system. Task 2 will start where Task 1 left off.
 
 \begin{description}
   \item[Task 1:] Users were asked to markup a DataCatalog profile using the data supplied on their task sheet.
@@ -99,14 +106,25 @@ Each test subject was assigned the same three tasks for each system, although an
 \end{description}
 
 \subsubsection{Final Usability Results}\label{sec:finalUsabilityResults}
-The final usability test was completed by eight test subjects. The set of the tasks for each system were completed easily by all the test subjects, as reflected by the relatively consistent times taken with the exception of a few outliers. With a faster average task completion time as well as feedback gathered from the questionnaire, it shows that System A was easy to use and was preferred by all test subjects, but could use some minor improvements.
+The final usability test was completed by eight test subjects. The set of the tasks for each system were completed easily by all the test subjects, as reflected by the relatively consistent times taken with the exception of a few outliers, shown in Appendix \ref{sec:taskTimesFinal}. With a faster average task completion time (Shown in Figure \ref{fig:averageTask}) as well as feedback gathered from the questionnaire, it shows that System A was easy to use and was preferred by all test subjects, but could use some minor improvements. \newline
+
+\begin{figure}[!h]
+  \centering
+  \begin{minipage}[b]{0.6\textwidth}
+   \fbox{\includegraphics[width=\textwidth]{charts/Average.png}}
+    \caption{Average Task Completion Times}
+    \label{fig:averageTask}
+  \end{minipage}
+\end{figure}
+
+\newpage
 
 The questionnaire presented test subjects with a total of seven questions. Questions one to four used a Likert scale, ranging from "Strongly Disagree" to "Strongly Agree", to assess how the subjects felt about each of the interfaces and the amount of information provided by the systems. Additionally, after each question a comment section was also provided to collect any additional information from the test subjects. Question six and seven asked the test subjects to provide written feedback on what could be added to each system or what could be changed. Question eight then asked which system would they prefer to use.
 
 %Question 1 - The interface is easy to use and navigate.
 As shown in Figure \ref{fig:finalQ1Bioschemas}, the majority of test subjects considered System A to be easy to use and navigate. The test subject who selected "Neither Agree nor Disagree" left further feedback stating that they found the forms nested design along with the buttons to add and remove items confusing. Two other test subjects also noted that they found the forms buttons to be confusing and another test subject suggested that they should be better separated to help with this issue.
 
-In comparison, only a few test subjects felt that the interface of System B was easy to use, shown in Figure \ref{fig:finalQ1Kaizen}. One test subject stated that they found it easy to use as they already had experience with Google Sheets and were familiar with the interface and layout. However, an issue that was apparent in most evaluations, stemmed from Task Two. Users were asked to save the resulting data from Task One into a HTML file. Users expected that double-clicking would highlight the data to be copied, although in Google Sheets double-clicking shows the user the formula behind the data. This often resulted in test subjects taking multiple attempts to copy to data successfully, increasing the time taken to complete the task. \newline
+In comparison, only a few test subjects felt that the interface of System B was easy to use, shown in Figure \ref{fig:finalQ1Kaizen}. One test subject stated that they found it easy to use as they already had experience with Google Sheets and were familiar with the interface and layout. However, an issue that was apparent in most evaluations, stemmed from Task Two. Users were asked to save the resulting data from Task One into a HTML file. Users expected that double-clicking would highlight the data to be copied, although in Google Sheets double-clicking shows the user the formula behind the data. This often resulted in test subjects taking multiple attempts to copy to data successfully, increasing the time taken to complete the task, which can be seen in Appendix \ref{sec:taskTimesFinal} with Figures \ref{fig:task2A} and \ref{fig:task2B}.\newline
 
 \begin{figure}[!h]
   \centering
@@ -128,7 +146,7 @@ In comparison, only a few test subjects felt that the interface of System B was 
 %Question 2 - The interface is appealing and attractive.%use of graphics. bioschemas %works but poor design. kaizen
 Figure \ref{fig:finalQ2Bioschemas} shows that every test subject agreed that they found System A to be aesthetically pleasing. One test subject commented that they liked the flat design of the system but felt that navigation bar could utilise some graphics. Originally, I had intended to use the Bioschemas logo in the navigation bar. Unfortunately, due to selecting the same green for the navigation bar used in the logo, it would have blended in too well and would not have been clearly seen.
 
-In comparison, most test subjects agreed that System B was not aesthetically pleasing, shown in Figure \ref{fig:finalQ2Kaizen}. Two test subjects commented that a separate application would have been a better choice for the design of the interface rather using Google Sheets. Another test subject commented that even though the system was functional, they thought that the system was poorly designed and not aesthetically pleasing.
+In comparison, most test subjects agreed that System B was not aesthetically pleasing, shown in Figure \ref{fig:finalQ2Kaizen}. Two test subjects commented that a separate application would have been a better choice for the design of the interface rather using Google Sheets. Another test subject commented that even though the system was functional, they thought that the system was poorly designed and not aesthetically pleasing. \newline
 
 \begin{figure}[!h]
   \centering
@@ -150,17 +168,19 @@ Question three has the most diverse range in answers from test subjects, as show
 
 System A, contained all information necessary to complete Task Three. Although most test subjects found it easy to find the information, some test subjects found it slightly more difficult. One test subject commented that they found the information hard to find as it was hidden within the collapsible sections. To increase the visibility of the information another test subject suggested to label what was contained in the collapsible sections.
 
+\newpage
+{\setstretch{1.9}
 System B, did not contain the information necessary to complete Task Three, instead it pointed to an external website. A couple test subjects felt that the website that contained information needed was well formatted, but because they had to visit an external website they selected "Neither Agree nor Disagree". Whereas other test subjects felt that they were not able to find the information quickly as they had to visit an external website and disagreed with the question.
 
 \begin{figure}[!h]
   \centering
-  \begin{minipage}[b]{0.47\textwidth}
+  \begin{minipage}[b]{0.44\textwidth}
    \fbox{\includegraphics[width=\textwidth]{charts/Final/Bioschemas_I_was_able_to_find_the_data_I_needed_quickly.png}}
     \caption{Question 3: System A}
     \label{fig:finalQ4Bioschemas}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.47\textwidth}
+  \begin{minipage}[b]{0.44\textwidth}
     \fbox{\includegraphics[width=\textwidth]{charts/Final/Kaizen_I_was_able_to_find_the_data_I_needed_quickly.png}}
     \caption{Question 3: System B}
     \label{fig:finalQ4Kaizen}
@@ -172,13 +192,13 @@ Figure \ref{fig:finalQ3Bioschemas} shows that every test subject agreed that Sys
 
 \begin{figure}[!h]
   \centering
-  \begin{minipage}[b]{0.47\textwidth}
+  \begin{minipage}[b]{0.44\textwidth}
    \fbox{\includegraphics[width=\textwidth]{charts/Final/Bioschemas_The_website_contains_enough_relevant_information.png}}
     \caption{Question 4: System A}
     \label{fig:finalQ3Bioschemas}
   \end{minipage}
   \hfill
-  \begin{minipage}[b]{0.47\textwidth}
+  \begin{minipage}[b]{0.44\textwidth}
     \fbox{\includegraphics[width=\textwidth]{charts/Final/Kaizen_The_website_contains_enough_relevant_information.png}}
     \caption{Question 4: System B}
     \label{fig:finalQ3Kaizen}
@@ -186,6 +206,8 @@ Figure \ref{fig:finalQ3Bioschemas} shows that every test subject agreed that Sys
 \end{figure}
 
 Question five asked test subjects "Is there anything that you would change about the system?". For System A, test subjects reiterated that they found the forms nested design along with the add item to be confusing and would like these features to be redesigned to be more user friendly. For System B, test subjects reiterated that they would have preferred a separate application to Google Sheets and commented that they would like all the information required to be available and not point to an external website.
+
+}
 
 \newpage
 Question six asked test subjects "Is there anything that you like to add to the system?". For System A, only one test subject suggested an addition. Their suggestion was to add graphical feedback when performing actions on the form. For example, when an item is added the area behind the item could change colour letting the user know where the item was added. For System B, a couple test subjects suggested that they would like a feature to easily download the resulting data to a HTML, like in System A.
@@ -204,12 +226,7 @@ In Summary, this final usability evaluation has been successful in comparing the
 
 
 \subsection{Summary of Usability Evaluation}
-To summarise, the prototype and final usability evaluation has been successful in showing
-
-common themes
-
-
-
+To summarise, both the final and prototype evaluation were successful in showing that the systems provided the desired functionality outlined at the beginning of the project. It also highlighted the design of the systems were successful in providing an effective, intuitive and aesthetically pleasing user interface and thus test subjects preferred System A over System B. Feedback given during the prototype evaluation was used to further refine the final system towards the target user and feedback given during the final evaluation has been included as future works in Section \ref{sec:futurework}.
 
 
 \newpage
@@ -268,6 +285,8 @@ FR 7 \textbf{The system should be able to handle recursive properties.}
 \item[--] Status: Complete
 \item[--] Explanation: The JSON-Editor library used for the form is able to handle the recursive properties.
 \end{itemize}
+
+\newpage
 \noindent
 FR 8 \textbf{The system should be able to prioritise form inputs.}
 \begin{itemize}
@@ -299,6 +318,7 @@ FR 11 \textbf{The system should display the controlled vocabulary of each proper
 \item[--] Explanation: Control Vocabularies are displayed through the Property Tips Section.
 \end{itemize}
 
+\newpage
 \noindent
 FR 12 \textbf{The system could generate Microdata and RDFa along side JSON-LD.}
 \begin{itemize}
@@ -328,6 +348,8 @@ NFR 1 \textbf{The system must be easy to use through a simple user interface.}
 \item[--] Status: Complete
 \item[--] Explanation: Results from the usability evaluation that the test subjects were happy with the interface and its ease of use, although some minor improvements are needed.
 \end{itemize}
+
+\newpage
 \noindent
 NFR 2 \textbf{The system must be available 24/7.}
 \begin{itemize}

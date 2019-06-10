@@ -9,28 +9,28 @@ In this chapter, I will give an overview of the systems desired functionality, d
 
 \section{System Requirements}
 \subsection{Overview}
-Once the system is complete it should allow the user to select a Bioschemas profile that they would like to generate a markup for. A form should then appear allowing the user to enter the data required to create the markup for the selected profile. The system then provides the user with all the information they need to complete the form without having to go to any external sources or ready any documentation. Once complete, the system then generates the markup with the provided data. The user will then be able to validate the generated markup is correct, both syntactically and against the profile.
+Once the system is complete it should allow the user to select a Bioschemas profile that they would like to generate a markup for. A form should then appear allowing the user to enter the data required to create the markup for the selected profile. The system then provides the user with all the information they need to complete the form without having to go to any external sources or read any documentation. Once complete, the system then generates the markup with the provided data. The user will then be able to validate the generated markup is correct, both syntactically and against the profile.
 
 }
 
 \subsection{Bioschemas}
 \label{sec:bioschemaRequirements}
-As mentioned in Section \ref{sec:bioschema}, Bioschemas adds not only new biological types to Schema.org but also a profile layer over the Schema.org model with additional constraints. To support Bioschemas profiles, the system must be able to support these additional constraints: cardinality (one or many items for a specified property), marginality (minimum, recommended and optional properties) and use of controlled vocabularies. 
+As mentioned in Section \ref{sec:bioschema}, Bioschemas adds not only new biological types to Schema.org but also a profile layer over the Schema.org model with additional constraints. To support Bioschemas profiles, the system must be able to support these additional constraints: cardinality (one or many items for a specified property), marginality (Minimum, Recommended and Optional properties) and use of controlled vocabularies. 
 
-Through discussions with Dr. Gray, I was able to establish that the system should use a declarative description of the Bioschemas profiles in order to generate the form. The form should also be ordered in a way that makes most sense to the user. i.e minimum then recommended then optional properties. Additionally, the generated markup should be in the format of JSON-LD (See Section \ref{sec:jsonld}).
+Through discussions with Dr. Gray, I was able to establish that the system should use a declarative description of the Bioschemas profiles in order to generate the form. The form should also be ordered in a way that makes most sense to the user. i.e Minimum then Recommended then Optional properties. Additionally, the generated markup should be in the format of JSON-LD (See Section \ref{sec:jsonld}).
 
-Finally, the system should display all the information required for the user to fill out the form. Where the information is available, each property should provide a description (provided by Bioschemas and Schema.org), examples and controlled vocabularies. 
+Finally, the system should display all the information required for the user to fill out the form. Where the information is available, each property should provide a description, examples and controlled vocabularies, which are provided by Bioschemas and Schema.org.
 
 \subsection{Prototyping}\label{ch:prototyping}
-To gain a better understanding of the system and its requirements I developed a prototype system. The goal of the prototype was to create a form that allowed users to generate a markup for the Dataset\footnote{\url{http://bioschemas.org/specifications/Dataset/} (accessed 03/11/2018)} Bioschemas profile. Through developing the prototype one functional requirement was discovered and another's importance was highlighted.
+To gain a better understanding of the system and its requirements I developed a prototype system. The goal of the prototype was to create a form that allowed users to generate a markup for the Dataset (v0.2)\footnote{\url{http://bioschemas.org/specifications/Dataset/} (accessed 03/11/2018)} Bioschemas profile. Through developing the prototype one functional requirement was discovered and another's importance was highlighted.
 
-During development I discovered that in order to generate markup based on the Bioschemas Dataset profile, the form must be able to handle recursive property types. This is due to Schema.org types having the ability to contain themselves as an expected type for a property. For example, the Schema.org type PropertyValue\footnote{\url{https://schema.org/PropertyValue} (accessed 03/11/2018)} has a property valueReference, where the expected type for this property can either be Enumeration, QualitativeValue, QuantiativeValue, StructuredValue or itself a PropertyValue. This requirement was then added to the list of functional requirements as FR 7 in Table \ref{table:2}. The requirement's prioritisation was set to should as unfortunately at this stage I was not able to produce this functionality, later discussed in Section \ref{sec:jsoneditor}.
+During development I discovered that in order to generate markup based on the Bioschemas Dataset (v0.2) profile, the form must be able to handle recursive property types. This is due to Schema.org types having the ability to contain themselves as an expected type for a property. For example, the Schema.org type PropertyValue\footnote{\url{https://schema.org/PropertyValue} (accessed 03/11/2018)} has a property valueReference, where the expected type for this property can either be Enumeration, QualitativeValue, QuantiativeValue, StructuredValue or itself a PropertyValue. This requirement was then added to the list of functional requirements as FR 7 in Table \ref{table:2}. The requirement's prioritisation was set to should as unfortunately at this stage I was not able to produce this functionality, later discussed in Section \ref{sec:jsoneditor}.
 
 \newpage
 The requirement highlighted during prototype development was FR 5, the system must be able to handle cardinality and marginality, shown in Table \ref{table:2}. The cardinality portion of this requirement previously mentioned in Section \ref{sec:bioschemaRequirements}, was not possible during the first iteration of the prototype due to limited functionality with the library used to display the form, this limitation will be later discussed in Section \ref{sec:jsoneditor}.
 
 
-Once the prototype system was complete seen in Figure \ref{fig:bioProto}, a usability evaluation was carried out to tailor the system requirements towards to the target user-group (members of the Bioschemas and life science communities). The feedback showed us that the functional requirements of the system achieved the desired functionality although more information needed to be provided thus FR 10 and 11 were added. Additionally, one test subject recommended to include different formats of markup and so FR 12 was included. A more detailed discussion of the prototype usability evaluation and the results can be seen in Section \ref{sec:prototyUsability}.\newline
+Once the prototype system was complete, shown in Figure \ref{fig:bioProto}, a initial prototype usability evaluation was carried out to tailor the system requirements towards to the target user-group (members of the Bioschemas and life science communities). The feedback showed us that the functional requirements of the system achieved the desired functionality although more information needed to be provided thus FR 10 (Descriptions and Examples) and 11 Controlled Vocabulary) were added. Additionally, one test subject recommended to include different formats of markup and so FR 12 (Microdata and RDFa) was included. A more detailed discussion of the prototype usability evaluation and the results can be seen in Section \ref{sec:prototyUsability}.\newline
 
 \begin{figure}[h]
  \centering\includegraphics[scale=0.5]{images/bioschemasPrototype.PNG}
@@ -78,7 +78,7 @@ From the requirements in Section \ref{sec:bioschemaRequirements} above along wit
  FR 9   & Should  & The system should be able validate the generated markup against the Bioschemas profile .&
  The user should be certain that the generated markup is correct.\\
     \hline
- FR 10   & Should  & The system should display description of each property, as well as examples.&
+ FR 10   & Should  & The system should display a description of each property, as well as examples.&
  To allow users to get more information without going to external sources. \\
   \hline
   FR 11   & Should  & The system should display the controlled vocabulary of each property.&
