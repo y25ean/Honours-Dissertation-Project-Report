@@ -7,5 +7,5 @@ Supervisor: Dr. Alasdair Gray<br/>
 Second Reader: Dr. Arash Eshghi<br/>
 Mark 86 / 100 <br/>
 
-Further development has been continued at:
+Further development of this project has been continued at:
 https://github.com/HW-SWeL/BioschemasMarkupGenerator
